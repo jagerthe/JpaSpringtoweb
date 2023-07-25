@@ -21,19 +21,26 @@ public class UserService {
 	@Autowired
 	private UserRepository repository;
 
+
+	//crud
+
+	//retrieve
 	public List<User> findAll() {
 		return repository.findAll();
 	}
 
+	//retrieve
 	public User findById(Long id) {
 		Optional<User> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
+	//create
 	public User insert(User obj) {
 		return repository.save(obj);
 	}
 
+	//delete
 	public void delete(Long id) {
 		try {
 			repository.deleteById(id);
@@ -48,6 +55,7 @@ public class UserService {
 		}
 	}
 
+	//update
 	public User update(Long id, User obj) {
 		try {
 			User entity = repository.getReferenceById(id);
